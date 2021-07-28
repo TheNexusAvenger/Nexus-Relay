@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelay", "NexusRelay\NexusRelay.csproj", "{F8875FCD-F6F1-4179-BCED-833F3C6DECDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelayTest", "NexusRelayTest\NexusRelayTest.csproj", "{47021563-16B6-4D28-8E57-AA2B3BEF92BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelayServer", "NexusRelayServer\NexusRelayServer.csproj", "{924D28C4-9B90-49CB-A9B7-45D4E56D7E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelayClient", "NexusRelayClient\NexusRelayClient.csproj", "{BB446D32-145A-4D09-B11A-8E0793D83367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8875FCD-F6F1-4179-BCED-833F3C6DECDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8875FCD-F6F1-4179-BCED-833F3C6DECDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8875FCD-F6F1-4179-BCED-833F3C6DECDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8875FCD-F6F1-4179-BCED-833F3C6DECDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47021563-16B6-4D28-8E57-AA2B3BEF92BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47021563-16B6-4D28-8E57-AA2B3BEF92BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47021563-16B6-4D28-8E57-AA2B3BEF92BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47021563-16B6-4D28-8E57-AA2B3BEF92BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924D28C4-9B90-49CB-A9B7-45D4E56D7E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924D28C4-9B90-49CB-A9B7-45D4E56D7E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924D28C4-9B90-49CB-A9B7-45D4E56D7E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924D28C4-9B90-49CB-A9B7-45D4E56D7E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB446D32-145A-4D09-B11A-8E0793D83367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB446D32-145A-4D09-B11A-8E0793D83367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB446D32-145A-4D09-B11A-8E0793D83367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB446D32-145A-4D09-B11A-8E0793D83367}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
