@@ -1,17 +1,86 @@
 using System;
-using System.Globalization;
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using Nexus.Logging.Output;
 
 namespace NexusRelay
 {
     public static class Logger
     {
         /// <summary>
+        /// Nexus Logger instance used.
+        /// </summary>
+        private static readonly Nexus.Logging.Logger NexusLogger = new Nexus.Logging.Logger();
+
+        /// <summary>
+        /// Console output of the application.
+        /// </summary>
+        private static readonly ConsoleOutput ConsoleOutput = new ConsoleOutput()
+        {
+            IncludeDate = true,
+            NamespaceWhitelist = new List<string>() { "NexusRelay" },
+            MinimumLevel = LogLevel.Information,
+        };
+        
+        /// <summary>
+        /// File output of the application.
+        /// </summary>
+        private static readonly FileOutput FileOutput = new FileOutput()
+        {
+            IncludeDate = true,
+            NamespaceWhitelist = new List<string>() { "NexusRelay" },
+            MinimumLevel = LogLevel.None,
+            FileLocation = "NexusRelay.log",
+        };
+
+        /// <summary>
+        /// Sets the console log level.
+        /// </summary>
+        /// <param name="level">Level to set to.</param>
+        public static void SetConsoleLogLevel(string level)
+        {
+            if (Enum.TryParse<LogLevel>(level, out var logLevel))
+            {
+                ConsoleOutput.MinimumLevel = logLevel;
+            }
+            else
+            {
+                Warning("Console log level \"" + level + "\" invalid. Defaulting to " + ConsoleOutput.MinimumLevel);
+            }
+        }
+        
+        /// <summary>
+        /// Sets the file log level.
+        /// </summary>
+        /// <param name="level">Level to set to.</param>
+        public static void SetFileLogLevel(string level)
+        {
+            if (Enum.TryParse<LogLevel>(level, out var logLevel))
+            {
+                FileOutput.MinimumLevel = logLevel;
+            }
+            else
+            {
+                Warning("File log level \"" + level + "\" invalid. Defaulting to " + FileOutput.MinimumLevel);
+            }
+        }
+
+        /// <summary>
+        /// Initializes the logger.
+        /// </summary>
+        static Logger()
+        {
+            NexusLogger.Outputs.Add(ConsoleOutput);
+            NexusLogger.Outputs.Add(FileOutput);
+        }
+        
+        /// <summary>
         /// Writes an debug message.
         /// </summary>
         /// <param name="message">Message to write.</param>
         public static void Debug(string message)
         {
-            WriteMessage(message, "Debug", ConsoleColor.Green);
+            NexusLogger.Debug(message);
         }
         
         /// <summary>
@@ -20,7 +89,7 @@ namespace NexusRelay
         /// <param name="message">Message to write.</param>
         public static void Info(string message)
         {
-            WriteMessage(message, "Information", ConsoleColor.White);
+            NexusLogger.Info(message);
         }
         
         /// <summary>
@@ -29,7 +98,7 @@ namespace NexusRelay
         /// <param name="message">Message to write.</param>
         public static void Warning(string message)
         {
-            WriteMessage(message, "Warning", ConsoleColor.Yellow);
+            NexusLogger.Warn(message);
         }
         
         /// <summary>
@@ -38,26 +107,7 @@ namespace NexusRelay
         /// <param name="message">Message to write.</param>
         public static void Error(string message)
         {
-            WriteMessage(message, "Error", ConsoleColor.Red);
-        }
-        
-        /// <summary>
-        /// Writes a message to the console.
-        /// </summary>
-        /// <param name="message">Message to write.</param>
-        /// <param name="type">Type of the message.</param>
-        /// <param name="color">Color of the message.</param>
-        private static void WriteMessage(string message, string type, ConsoleColor color)
-        {
-            // Set up the message.
-            var date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            Console.ForegroundColor = color;
-            
-            // Write the messages.
-            foreach (var line in message.Split("\n"))
-            {
-                Console.WriteLine("[" + date + "] [" + type + "]: " + line);
-            }
+            NexusLogger.Error(message);
         }
     }
 }

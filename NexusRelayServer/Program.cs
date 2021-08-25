@@ -4,13 +4,23 @@
  * Runs the server application.
  */
 
+using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using Nexus.Logging.Output;
 using NexusRelay;
 using NexusRelayServer.Server;
 
 namespace NexusRelayServer
 {
+    public class ClientInputs
+    {
+        public int Port { get; set; }
+        public string Secret { get; set; }
+        public string ConsoleLogLevel { get; set; }
+        public string FileLogLevel { get; set; }
+    }
+    
     class Program
     {
         public static int Main(string[] args)
@@ -24,30 +34,46 @@ namespace NexusRelayServer
                 new Option<string>(
                     "--secret",
                     "Secret required by the Nexus Relay client to start accepting traffic."),
+                new Option<string>(
+                    "--console-log-level",
+                    "Log level of the console output."),
+                new Option<string>(
+                    "--file-log-level",
+                    "Log level of the file output."),
             };
             rootCommand.Name = "NexusRelayServer";
             rootCommand.Description = "TCP/UDP traffic forwarder application for exposing services.";
 
             // Set up the handler.
-            rootCommand.Handler = CommandHandler.Create<int, string>((port, secret) =>
+            rootCommand.Handler = CommandHandler.Create<ClientInputs>((clientInputs) =>
             {
+                // Set up the logging.
+                if (clientInputs.ConsoleLogLevel != default)
+                {
+                    Logger.SetConsoleLogLevel(clientInputs.ConsoleLogLevel);
+                }
+                if (clientInputs.FileLogLevel != default)
+                {
+                    Logger.SetFileLogLevel(clientInputs.FileLogLevel);
+                }
+
                 // Return if a value is missing.
-                if (port == default)
+                if (clientInputs.Port == default)
                 {
                     Logger.Error("Port is not defined.");
                     return 1;
                 }
-                if (secret == default)
+                if (clientInputs.Secret == default)
                 {
                     Logger.Error("Secret is not defined.");
                     return 1;
                 }
                 
                 // Create the host server.
-                var server = new HostServer(port, secret);
+                var server = new HostServer(clientInputs.Port, clientInputs.Secret);
                 
                 // Start the host server.
-                Logger.Info($"Serving host server on port {port}");
+                Logger.Info($"Serving host server on port {clientInputs.Port}");
                 server.StartAsync().Wait();
                 return 0;
             });

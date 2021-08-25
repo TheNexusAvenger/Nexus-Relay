@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelayServer", "NexusRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusRelayClient", "NexusRelayClient\NexusRelayClient.csproj", "{BB446D32-145A-4D09-B11A-8E0793D83367}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.Logging", "NexusLogging\Nexus.Logging\Nexus.Logging.csproj", "{6A3E47C7-53C5-43D4-A486-39CCA5692875}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{BB446D32-145A-4D09-B11A-8E0793D83367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB446D32-145A-4D09-B11A-8E0793D83367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB446D32-145A-4D09-B11A-8E0793D83367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A3E47C7-53C5-43D4-A486-39CCA5692875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A3E47C7-53C5-43D4-A486-39CCA5692875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A3E47C7-53C5-43D4-A486-39CCA5692875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A3E47C7-53C5-43D4-A486-39CCA5692875}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
