@@ -66,6 +66,15 @@ namespace NexusRelay
         }
 
         /// <summary>
+        /// Sets the log file location.
+        /// </summary>
+        /// <param name="location">Location of the log file.</param>
+        public static void SetLogFile(string location)
+        {
+            FileOutput.FileLocation = location;
+        }
+
+        /// <summary>
         /// Initializes the logger.
         /// </summary>
         static Logger()

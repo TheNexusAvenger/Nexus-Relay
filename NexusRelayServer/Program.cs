@@ -19,6 +19,7 @@ namespace NexusRelayServer
         public string Secret { get; set; }
         public string ConsoleLogLevel { get; set; }
         public string FileLogLevel { get; set; }
+        public string LogFile { get; set; }
     }
     
     class Program
@@ -40,6 +41,9 @@ namespace NexusRelayServer
                 new Option<string>(
                     "--file-log-level",
                     "Log level of the file output."),
+                new Option<string>(
+                    "--log-file",
+                    "File location of the logs."),
             };
             rootCommand.Name = "NexusRelayServer";
             rootCommand.Description = "TCP/UDP traffic forwarder application for exposing services.";
@@ -55,6 +59,10 @@ namespace NexusRelayServer
                 if (clientInputs.FileLogLevel != default)
                 {
                     Logger.SetFileLogLevel(clientInputs.FileLogLevel);
+                }
+                if (clientInputs.LogFile != default)
+                {
+                    Logger.SetLogFile(clientInputs.LogFile);
                 }
 
                 // Return if a value is missing.
