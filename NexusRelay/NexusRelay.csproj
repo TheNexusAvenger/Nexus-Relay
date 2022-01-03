@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NexusLogging\Nexus.Logging\Nexus.Logging.csproj" />
+      <PackageReference Include="Nexus.Logging" Version="1.1.0" />
     </ItemGroup>
 
 </Project>
